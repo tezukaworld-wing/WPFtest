@@ -50,6 +50,6 @@ namespace 自作アプリ1号
             Process.Start(pi);
         }
 
-
+//kokoko
     }
 }
