@@ -16,7 +16,8 @@ using System.Diagnostics;
 using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Threading;
-
+using Outlook = Microsoft.Office.Interop.Outlook;
+using ClosedXML.Excel;
 
 namespace 自作アプリ1号
 {
@@ -49,7 +50,59 @@ namespace 自作アプリ1号
             };
             Process.Start(pi);
         }
-
-
+        public void syukin(object sender, EventArgs e)
+        {
+            var ol = new Outlook.Application();
+            Outlook.MailItem mail = ol.CreateItem(Outlook.OlItemType.olMailItem) as Outlook.MailItem;
+            DateTime dt = DateTime.Now;
+            mail.Subject = "出勤:" + dt.ToString("yyyy年MM月dd日 ") + "(" + dt.ToString("ddd") + ")" + "手塚";
+            Outlook.AddressEntry currentUser = ol.Session.CurrentUser.AddressEntry;
+            mail.Body = "";
+            mail.Recipients.Add("attendance@world-wing.com");
+            mail.Recipients.ResolveAll();
+            mail.Send();
+        }
+        private void nippou(object sender, EventArgs e)
+        {
+            var ol = new Outlook.Application();
+            DateTime dt = DateTime.Now;
+            String filePath = @"C:\Users\developer\Desktop\自作アプリ1.1\テキストテンプレート.xlsx";
+            XLWorkbook workbook = new XLWorkbook(filePath);
+            IXLWorksheet worksheet = workbook.Worksheet(1);
+            Outlook.MailItem mail = ol.CreateItem(Outlook.OlItemType.olMailItem) as Outlook.MailItem;
+            mail.Subject = "［日報］手塚 " + dt.ToString("yyyy年MM月dd日 ") + "(" + dt.ToString("ddd") + ")";
+            Outlook.AddressEntry currentUser = ol.Session.CurrentUser.AddressEntry;
+            mail.Body = worksheet.Cell("A2").Value + "";
+            mail.Recipients.Add("freshers-iar@world-wing.com");
+            mail.Recipients.ResolveAll();
+            mail.Send();
+        }
+        private void taikin(object sender, EventArgs e)
+        {
+            var ol = new Outlook.Application();
+            Outlook.MailItem mail = ol.CreateItem(Outlook.OlItemType.olMailItem) as Outlook.MailItem;
+            DateTime dt = DateTime.Now;
+            mail.Subject = "退勤:" + dt.ToString("yyyy年MM月dd日 ") + "(" + dt.ToString("ddd") + ")" + "手塚";
+            Outlook.AddressEntry currentUser = ol.Session.CurrentUser.AddressEntry;
+            mail.Body = "本日の業務\r\n検証作業\r\nプログラミング";
+            mail.Recipients.Add("attendance@world-wing.com");
+            mail.Recipients.ResolveAll();
+            mail.Send();
+        }
+        private void leport(object sender, EventArgs e)
+        {
+            var ol = new Outlook.Application();
+            DateTime dt = DateTime.Now;
+            String filePath = @"C:\Users\developer\Desktop\自作アプリ1.1\テキストテンプレート.xlsx";
+            XLWorkbook workbook = new XLWorkbook(filePath);
+            IXLWorksheet worksheet = workbook.Worksheet(1);
+            Outlook.MailItem mail = ol.CreateItem(Outlook.OlItemType.olMailItem) as Outlook.MailItem;
+            mail.Subject = "［レポート］手塚 " + dt.ToString("yyyy年MM月dd日 ") + "(" + dt.ToString("ddd") + ")";
+            Outlook.AddressEntry currentUser = ol.Session.CurrentUser.AddressEntry;
+            mail.Body = worksheet.Cell("B2").Value + "";
+            mail.Recipients.Add("manabiya-report@world-wing.com");
+            mail.Recipients.ResolveAll();
+            mail.Send();
+        }
     }
 }
