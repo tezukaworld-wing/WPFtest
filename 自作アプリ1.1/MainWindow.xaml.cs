@@ -30,8 +30,8 @@ namespace 自作アプリ1号
         {
 
         }
-
-        public void Zyobukan(object sender, EventArgs e)
+        //ジョブカンのURLを開く
+        public void Jobcan(object sender, EventArgs e)
         {
             ProcessStartInfo pi = new ProcessStartInfo()
             {
@@ -40,8 +40,8 @@ namespace 自作アプリ1号
             };
             Process.Start(pi);
         }
-
-        public void hyouka(object sender, EventArgs e)
+        //評価シートのURLを開く
+        public void EvaluationSheet(object sender, EventArgs e)
         {
             ProcessStartInfo pi = new ProcessStartInfo()
             {
@@ -50,7 +50,8 @@ namespace 自作アプリ1号
             };
             Process.Start(pi);
         }
-        public void syukin(object sender, EventArgs e)
+        //出勤メールを送る
+        public void BeginWork(object sender, EventArgs e)
         {
             var ol = new Outlook.Application();
             Outlook.MailItem mail = ol.CreateItem(Outlook.OlItemType.olMailItem) as Outlook.MailItem;
@@ -62,11 +63,12 @@ namespace 自作アプリ1号
             mail.Recipients.ResolveAll();
             mail.Send();
         }
-        private void nippou(object sender, EventArgs e)
+        //エクセルシートの文章を引用してメール本文に反映、日報を即送信
+        private void DailyReport(object sender, EventArgs e)
         {
             var ol = new Outlook.Application();
             DateTime dt = DateTime.Now;
-            String filePath = @"C:\Users\developer\Desktop\自作アプリ1.1\テキストテンプレート.xlsx";
+            String filePath = @"C:\Users\手塚航\OneDrive - つばさ株式会社\デスクトップ\自作アプリ1.1\テキストテンプレート.xlsx";
             XLWorkbook workbook = new XLWorkbook(filePath);
             IXLWorksheet worksheet = workbook.Worksheet(1);
             Outlook.MailItem mail = ol.CreateItem(Outlook.OlItemType.olMailItem) as Outlook.MailItem;
@@ -77,11 +79,13 @@ namespace 自作アプリ1号
             mail.Recipients.ResolveAll();
             mail.Send();
         }
-        private void taikin(object sender, EventArgs e)
+        //退勤メールを送る
+        private void FinishWork(object sender, EventArgs e)
         {
             var ol = new Outlook.Application();
             Outlook.MailItem mail = ol.CreateItem(Outlook.OlItemType.olMailItem) as Outlook.MailItem;
             DateTime dt = DateTime.Now;
+
             mail.Subject = "退勤:" + dt.ToString("yyyy年MM月dd日 ") + "(" + dt.ToString("ddd") + ")" + "手塚";
             Outlook.AddressEntry currentUser = ol.Session.CurrentUser.AddressEntry;
             mail.Body = "本日の業務\r\n検証作業\r\nプログラミング";
@@ -89,11 +93,12 @@ namespace 自作アプリ1号
             mail.Recipients.ResolveAll();
             mail.Send();
         }
-        private void leport(object sender, EventArgs e)
+        //エクセルシートの文章を引用してメール本文に反映、レポートを即送信
+        private void Report(object sender, EventArgs e)
         {
             var ol = new Outlook.Application();
             DateTime dt = DateTime.Now;
-            String filePath = @"C:\Users\developer\Desktop\自作アプリ1.1\テキストテンプレート.xlsx";
+            String filePath = @"C:\Users\手塚航\OneDrive - つばさ株式会社\デスクトップ\自作アプリ1.1\テキストテンプレート.xlsx";
             XLWorkbook workbook = new XLWorkbook(filePath);
             IXLWorksheet worksheet = workbook.Worksheet(1);
             Outlook.MailItem mail = ol.CreateItem(Outlook.OlItemType.olMailItem) as Outlook.MailItem;

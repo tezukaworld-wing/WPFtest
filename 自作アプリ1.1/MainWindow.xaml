@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:自作アプリ1号"
         mc:Ignorable="d"
       
-        Title="出退勤ボタン1.1" Height="600" Width="750">
+        Title="出退勤ボタン1.1" Height="600" Width="750" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
     <WrapPanel Margin="0,0,0,-6" RenderTransformOrigin="0.328,0.933" >
 
         <TextBlock Text="出退勤ボタン1.1" VerticalAlignment="Center" Height="60" FontSize="40" Width="602">
@@ -20,13 +20,13 @@
             </TextBlock.RenderTransform>
         </TextBlock>
 
-        <Button FontSize="32" Content ="出勤"  x:Name="出勤ボタン" Click="syukin" Background="#FF60EF5C"  Width="240" Height="243" VerticalAlignment="Top" HorizontalAlignment="Center"/>
-        <Button FontSize="32" Content="退勤"  x:Name="退勤" Click="taikin" Background="#FFF7A857" Width="240" Height="243" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Button FontSize="32" Content ="出勤"  x:Name="出勤" Click="BeginWork" Background="#FF60EF5C"  Width="240" Height="243" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+        <Button FontSize="32" Content="退勤"  x:Name="退勤" Click="FinishWork" Background="#FFF7A857" Width="240" Height="243" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button.RenderTransform>
                 <TransformGroup/>
             </Button.RenderTransform>
         </Button>
-        <Button FontSize="32" Content="ジョブカン" Click="Zyobukan" x:Name="ジョブカン" Background="#FF3BF2FF" Width="240" Height="243" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Button FontSize="32" Content="ジョブカン" Click="Jobcan" x:Name="ジョブカン" Background="#FF3BF2FF" Width="240" Height="243" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -38,17 +38,18 @@
         </Button>
 
 
-        <Button FontSize="32" Content="レポート" HorizontalAlignment="Left" Click="leport" x:Name="レポート" Background="#FFFF6A5B" Width="240" Height="240">
+        <Button FontSize="32" Content="レポート" HorizontalAlignment="Left" Click="Report" x:Name="レポート" Background="#FFFF6A5B" Width="240" Height="240">
             <Button.RenderTransform>
                 <TransformGroup/>
             </Button.RenderTransform>
         </Button>
-        <Button  FontSize="32" Content="日報" Click="nippou" x:Name="日報" Background="#FFFAFB4D" Width="240" Height="240" VerticalAlignment="Top" HorizontalAlignment="Center">
+        <Button  FontSize="32" Content="日報" Click="DailyReport" x:Name="日報" Background="#FFFAFB4D" Width="240" Height="240" VerticalAlignment="Top" HorizontalAlignment="Center">
             <Button.RenderTransform>
                 <TransformGroup/>
             </Button.RenderTransform>
         </Button>
-        <Button FontSize="32" HorizontalAlignment="Left" Content="評価シート" Click="hyouka" x:Name="評価シート" Background="#FFDE60F3" Width="240" Height="240"/>
+        <Button FontSize="32" HorizontalAlignment="Left" Content="評価シート" Click="EvaluationSheet" x:Name="評価シート" Background="#FFDE60F3" Width="240" Height="240"/>
+        
 
 
 
